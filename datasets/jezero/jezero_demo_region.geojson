@@ -1,0 +1,71 @@
+{
+  "type": "FeatureCollection",
+  "name": "Jezero_Crater_Demo_Region",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "OGC:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Jezero Crater DEM coverage",
+        "feature_type": "study_area",
+        "source": "USGS Astrogeology Mars 2020 Science Investigation CTX DEM Mosaic",
+        "resolution_m_per_pixel": 20,
+        "min_latitude_planetocentric_deg": 17.58,
+        "max_latitude_planetocentric_deg": 19.29,
+        "min_longitude_east_deg": 76.99,
+        "max_longitude_east_deg": 78.58,
+        "note": "Bounding box from USGS Astropedia metadata; polygon is a rectangular study-area extent, not the crater rim."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.99,
+              17.58
+            ],
+            [
+              78.58,
+              17.58
+            ],
+            [
+              78.58,
+              19.29
+            ],
+            [
+              76.99,
+              19.29
+            ],
+            [
+              76.99,
+              17.58
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Perseverance landing location",
+        "feature_type": "reference_point",
+        "latitude_north_deg": 18.4446,
+        "longitude_east_deg": 77.4509,
+        "source": "NASA-related peer-reviewed study (Bell et al., 2023)",
+        "note": "Reference point for orientation; not the rover's live/current position."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.4509,
+          18.4446
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+DEVELOPER 1 HANDOFF — NASA DATA LAYERS
+
+Recommended visual layer:
+MOLA Shaded Relief / Colorized Elevation (ASU)
+Product metadata: https://mars.asu.edu/data/mola_color/
+PNG tile directory: https://mars.asu.edu/data/mola_color/large/
+
+Metadata:
+- 128 pixels/degree (~463.1 m/pixel)
+- Simple cylindrical/equirectangular
+- Longitude -180 to +180; latitude 88N to 88S
+- 30 x 30 degree tiles
+
+Important integration warning:
+Leaflet defaults to Earth Web Mercator. Confirm the Mars CRS and longitude convention before overlaying the MOLA tiles. Do not stretch one tile over the entire Mars globe. The source is tiled in 30-degree geographic tiles.
+
+Numeric elevation source:
+NASA PDS MOLA MEGDR: https://pds-geosciences.wustl.edu/missions/mgs/megdr.html
+Download topography IMG plus matching LBL; decode according to PDS SIS before using numeric values.
+
+Do not use RGB values from the colourized PNG as elevation measurements.
+No slope raster is included yet; slope must be derived from decoded numeric elevation.

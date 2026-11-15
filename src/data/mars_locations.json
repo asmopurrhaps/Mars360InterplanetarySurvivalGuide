@@ -1,0 +1,47 @@
+{
+  "convention": "Planetocentric latitude (deg, N+), east-positive longitude (-180..180). Matches the map (Leaflet EPSG4326, [lat, lng]).",
+  "status_legend": {
+    "in_handoff": "Value comes from the Developer 2 handoff (cites Bell et al. 2023).",
+    "recalled": "Written from memory of NASA/JPL/PDS public information; NOT re-verified in this build (no internet). Check the source before publishing."
+  },
+  "sites": [
+    {
+      "id": "jezero", "name": "Jezero Crater",
+      "reference_point": {"label": "Perseverance landing reference", "lat": 18.4446, "lng": 77.4509, "status": "in_handoff"},
+      "summary": "Ancient lake basin with a river delta; Mars 2020 Perseverance landing site.",
+      "hazards": ["Rocky, steep delta and crater-rim terrain", "No site-specific dust, temperature or radiation measurements are bundled"],
+      "data": "Real CTX DEM (20 m/px) and orthomosaic are linked in datasets/jezero; rasters are not bundled.",
+      "links": ["https://astrogeology.usgs.gov/search/map/mars_2020_science_investigation_ctx_dem_mosaic"]
+    },
+    {
+      "id": "gale", "name": "Gale Crater",
+      "reference_point": {"label": "Curiosity landing (approx.)", "lat": -4.5895, "lng": 137.4417, "status": "recalled"},
+      "summary": "Crater with a ~5 km layered mound (Aeolis Mons); Curiosity (MSL) landing site.",
+      "hazards": ["Sand ripples and sharp rocks damaged rover wheels", "Steep slopes on the mound"],
+      "data": "MSL RAD and REMS surface measurements exist on NASA PDS; not bundled.",
+      "links": ["https://pds.nasa.gov"]
+    },
+    {
+      "id": "arcadia", "name": "Arcadia Planitia",
+      "reference_point": null,
+      "summary": "Smooth northern lowland; orbital data suggest shallow buried ice at mid-latitudes.",
+      "hazards": ["Cold at high latitude", "Ice depth and amount need dedicated radar/neutron data"],
+      "data": "Use Mars Odyssey GRS and SHARAD radar products from PDS; not bundled. Map marker is an approximate region centre: verify in the USGS Gazetteer.",
+      "links": ["https://planetarynames.wr.usgs.gov"]
+    },
+    {
+      "id": "elysium", "name": "Elysium Planitia",
+      "reference_point": {"label": "InSight landing (approx.)", "lat": 4.502, "lng": 135.623, "status": "recalled"},
+      "summary": "Flat equatorial plain; InSight lander site.",
+      "hazards": ["Dust deposition on solar panels", "Marsquakes recorded by InSight"],
+      "data": "InSight weather and seismic data are on PDS; not bundled.",
+      "links": ["https://pds.nasa.gov"]
+    }
+  ],
+  "environment": [
+    {"topic": "Radiation", "text": "MSL RAD measured about 0.64 mSv/day (galactic cosmic rays) at Gale Crater's surface (Hassler et al., 2014, Science 343:1244797).", "status": "recalled"},
+    {"topic": "Atmosphere", "text": "Mostly CO2, surface pressure under 1% of Earth's: unbreathable, and too thin for stable liquid water at most places.", "status": "recalled"},
+    {"topic": "Dust storms", "text": "Regional and occasional global dust storms occur; the 2018 global storm ended Opportunity's mission.", "status": "recalled"},
+    {"topic": "Water ice", "text": "Phoenix (2008) uncovered ice near 68 N; Mars Odyssey GRS maps hydrogen-rich shallow soil toward the poles.", "status": "recalled"}
+  ]
+}

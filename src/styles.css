@@ -1,0 +1,355 @@
+:root {
+  --bg: #05070a;
+  --panel: #0a0e13;
+  --panel-2: #121821;
+  --line: #26313d;
+  --text: #e8eef4;
+  --muted: #7f8c99;
+  --accent: #e2703a;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+}
+
+.app { display: flex; flex-direction: column; height: 100%; }
+
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 18px; background: var(--panel); border-bottom: 1px solid var(--line);
+}
+.topbar h1 { margin: 0; font-size: 20px; letter-spacing: 0.04em; color: var(--accent); }
+.topbar .sub { color: var(--muted); font-size: 12px; }
+.chip {
+  border: 1px solid var(--accent); color: var(--accent); border-radius: 999px;
+  padding: 3px 10px; font-size: 12px;
+}
+
+.layout {
+  flex: 1; min-height: 0;
+  display: grid; grid-template-columns: 240px 1fr 300px; gap: 12px; padding: 12px;
+}
+
+.panel {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+  padding: 14px; overflow-y: auto;
+}
+.panel h2 { margin: 0 0 10px; font-size: 15px; }
+.panel h3 { margin: 16px 0 8px; font-size: 13px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+
+fieldset { border: 1px solid var(--line); border-radius: 8px; margin: 0 0 12px; padding: 8px 10px; }
+legend { color: var(--muted); font-size: 12px; padding: 0 6px; }
+.radio { display: flex; gap: 8px; align-items: flex-start; padding: 4px 0; cursor: pointer; }
+.radio input { margin-top: 2px; accent-color: var(--accent); }
+
+.hint { color: var(--muted); font-size: 12px; line-height: 1.45; }
+.note { color: var(--text); line-height: 1.45; margin: 6px 0 0; }
+.coords { color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.map-col { display: flex; flex-direction: column; gap: 10px; min-width: 0; min-height: 0; }
+.map-wrap { position: relative; width: 100%; aspect-ratio: 2 / 1; flex: none; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.map { position: absolute; inset: 0; background: #0b0807; }
+.map-banner {
+  position: absolute; left: 12px; right: 12px; top: 12px; z-index: 1000;
+  background: rgba(40, 20, 10, 0.92); border: 1px solid var(--accent); border-radius: 8px;
+  padding: 8px 12px; font-size: 12px;
+}
+.map-banner code { color: var(--accent); }
+
+.legend { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.legend-block { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+.legend-title { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+.legend-note { font-size: 12px; color: var(--muted); }
+.bar { height: 10px; border-radius: 5px; }
+.bar-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+.score-card {
+  display: flex; gap: 14px; align-items: center; margin-top: 12px;
+  border: 2px solid; border-radius: 10px; padding: 10px 14px; background: var(--panel-2);
+}
+.score-num { font-size: 34px; font-weight: 700; line-height: 1; }
+.score-num small { font-size: 14px; color: var(--muted); margin-left: 2px; }
+.score-label { font-size: 16px; font-weight: 600; }
+.score-sub { color: var(--muted); font-size: 12px; }
+
+.factors { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.factor-row { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; }
+.factor-detail { color: var(--muted); font-variant-numeric: tabular-nums; }
+.track { height: 6px; background: var(--panel-2); border-radius: 3px; margin-top: 4px; overflow: hidden; }
+.fill { height: 100%; border-radius: 3px; }
+
+.badge-sample {
+  margin-top: 16px; padding: 6px 10px; border: 1px dashed var(--accent); border-radius: 6px;
+  color: var(--accent); font-size: 12px;
+}
+
+.leaflet-container { font-family: inherit; background: #0b0807; }
+.leaflet-tooltip { background: #1f1814; color: #f0e6dc; border: 1px solid #3a2d25; }
+.leaflet-tooltip-top:before { border-top-color: #3a2d25; }
+
+@media (max-width: 960px) {
+  .layout { grid-template-columns: 1fr; grid-template-rows: auto minmax(420px, 1fr) auto; overflow-y: auto; }
+  .legend { grid-template-columns: 1fr; }
+}
+
+.brief { margin-top: 14px; font-size: 0.9rem; }
+.brief h3, .brief h4 { margin: 10px 0 4px; }
+.brief ul { padding-left: 18px; margin: 4px 0; }
+.brief a { color: #ffd166; word-break: break-all; font-size: 0.8rem; }
+
+/* ---- Mission-control HUD look ---- */
+:root { --bg: #050505; --panel: #0a0908; --panel-2: #14100e; --line: #3b2c22; --accent: #ff7a3d; --mono: ui-monospace, 'Cascadia Mono', Consolas, Menlo, monospace; }
+body { font-family: var(--mono); font-size: 13px; }
+.topbar { display: grid; grid-template-columns: auto minmax(220px, 520px) auto; gap: 24px; padding: 10px 20px; background: #050505; }
+.eyebrow { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); }
+.topbar h1 { font-size: 26px; letter-spacing: 0.12em; color: #fff; }
+.topbar .sub { text-transform: uppercase; letter-spacing: 0.14em; font-size: 10px; }
+.search { position: relative; }
+.search input { width: 100%; background: #000; color: var(--text); border: 1px solid var(--line); padding: 11px 12px; font: inherit; border-radius: 2px; }
+.search input:focus { outline: 1px solid var(--accent); }
+.hits { position: absolute; z-index: 1000; left: 0; right: 0; margin: 2px 0 0; padding: 0; list-style: none; background: #000; border: 1px solid var(--accent); }
+.hits li { padding: 8px 12px; cursor: pointer; }
+.hits li:hover { background: var(--panel-2); color: var(--accent); }
+.status { display: flex; align-items: center; gap: 14px; font-size: 11px; letter-spacing: 0.14em; color: var(--muted); }
+.status .dot { width: 8px; height: 8px; border-radius: 50%; background: #4fd18b; display: inline-block; margin-right: -6px; }
+.status .stat b { color: #fff; }
+.chip { border-radius: 2px; text-transform: uppercase; letter-spacing: 0.12em; font-size: 10px; }
+.panel { border-radius: 2px; background: #0a0908; }
+.panel h2, .panel h3 { text-transform: uppercase; letter-spacing: 0.16em; font-size: 11px; color: var(--muted); border-bottom: 1px solid var(--line); padding-bottom: 6px; }
+fieldset, .map-wrap, .legend-block, .score-card { border-radius: 2px; }
+.map-wrap { border-color: var(--line); }
+.readout { position: absolute; left: 0; right: 0; bottom: 0; z-index: 800; display: flex; justify-content: space-between;
+  padding: 4px 10px; font-size: 10px; letter-spacing: 0.12em; background: rgba(0,0,0,0.78); color: var(--muted); pointer-events: none; }
+@media (max-width: 900px) { .topbar { grid-template-columns: 1fr; } .layout { grid-template-columns: 1fr; overflow-y: auto; } }
+
+/* Mission-control HUD look: sharp corners, mono caps labels, thin lines. */
+:root { --cyan: #5ad1e6; --mono: ui-monospace, 'Cascadia Mono', Consolas, monospace; }
+body { font-family: var(--mono); font-size: 13px; }
+.panel, .legend-block, .map-wrap, fieldset, .score-card, .badge-sample, .chip { border-radius: 0; }
+.panel h2, .legend-title, legend, .panel h3, .brief h3, .brief h4 {
+  font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.12em; font-size: 11px; color: var(--cyan);
+}
+.topbar { border-bottom: 1px solid var(--cyan); }
+.topbar h1 { font-size: 22px; letter-spacing: 0.18em; color: #fff; }
+.topbar .sub { text-transform: uppercase; letter-spacing: 0.14em; font-size: 10px; }
+.chip { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; }
+.panel { border-top: 2px solid var(--cyan); }
+.map-wrap { border-color: var(--cyan); box-shadow: 0 0 18px rgba(90, 209, 230, 0.15); }
+.leaflet-container { background: #000; }
+.leaflet-tooltip { background: #000; color: #fff; border: 1px solid var(--cyan); border-radius: 0; font-family: var(--mono); }
+.hud-readout {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 1000; pointer-events: none;
+  padding: 3px 10px; background: rgba(0,0,0,0.75); color: var(--cyan);
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; display: flex; justify-content: space-between;
+}
+.left-col { display: flex; flex-direction: column; gap: 12px; min-height: 0; overflow-y: auto; }
+.field { display: grid; gap: 4px; margin-bottom: 8px; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; }
+.field select { background: var(--panel-2); color: var(--text); border: 1px solid var(--line); padding: 5px; font-family: var(--mono); }
+.btn { width: 100%; padding: 7px; background: transparent; color: var(--cyan); border: 1px solid var(--cyan); font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.12em; cursor: pointer; }
+.btn:hover { background: rgba(90, 209, 230, 0.12); }
+.route-table { width: 100%; margin-top: 10px; font-size: 12px; border-collapse: collapse; }
+.route-table th { color: var(--muted); font-weight: 400; text-align: right; }
+.route-table td { text-align: right; padding: 3px 0; }
+.route-table td:first-child { text-align: left; }
+.swatch { display: inline-block; width: 12px; height: 3px; margin-right: 6px; vertical-align: middle; }
+.left-col .panel { overflow: visible; flex: none; }
+.field select { width: 100%; }
+.layout { grid-template-columns: 270px 1fr 300px; }
+
+/* ---- Custom Mars Targeting Beacons & Rich Photo Hover Bubble ---- */
+.globe-reset-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 900;
+  background: rgba(5, 7, 10, 0.88);
+  color: var(--cyan);
+  border: 1px solid var(--cyan);
+  padding: 5px 10px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+}
+.globe-reset-btn:hover {
+  background: rgba(90, 209, 230, 0.18);
+}
+
+.mars-custom-pin {
+  background: transparent !important;
+  border: none !important;
+}
+
+.mars-pin-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.18s ease, filter 0.18s ease;
+  filter: drop-shadow(0 0 6px var(--pin-color, #5ad1e6));
+}
+
+.mars-pin-wrap:hover,
+.mars-pin-wrap.is-selected {
+  transform: scale(1.28);
+  filter: drop-shadow(0 0 12px var(--pin-color, #5ad1e6));
+  z-index: 1000;
+}
+
+.mars-pin-pulse {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--pin-color, #5ad1e6);
+  transform: rotate(45deg);
+  opacity: 0;
+  animation: marsBeaconPulse 2.4s infinite ease-out;
+  pointer-events: none;
+}
+
+@keyframes marsBeaconPulse {
+  0% {
+    transform: rotate(45deg) scale(0.7);
+    opacity: 0.85;
+  }
+  100% {
+    transform: rotate(45deg) scale(1.75);
+    opacity: 0;
+  }
+}
+
+.mars-picked-reticle {
+  width: 20px;
+  height: 20px;
+  border: 1.5px dashed var(--cyan);
+  border-radius: 50%;
+  background: rgba(90, 209, 230, 0.15);
+  box-shadow: 0 0 10px rgba(90, 209, 230, 0.6);
+}
+
+/* Strip default Leaflet tooltip box so our HUD card takes over */
+.leaflet-tooltip.mars-rich-tooltip {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+.leaflet-tooltip-top.mars-rich-tooltip::before {
+  border-top-color: var(--cyan) !important;
+}
+.leaflet-tooltip-bottom.mars-rich-tooltip::before {
+  border-bottom-color: var(--cyan) !important;
+}
+
+/* Rich Hover Bubble Card */
+.mars-hover-bubble {
+  width: 245px;
+  background: rgba(8, 11, 16, 0.96);
+  border: 1px solid var(--cyan);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.9), 0 0 14px rgba(90, 209, 230, 0.22);
+  font-family: var(--mono);
+  color: var(--text);
+  overflow: hidden;
+  white-space: normal;
+  backdrop-filter: blur(8px);
+}
+
+.mars-bubble-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 124px;
+  background: #121821;
+  border-bottom: 1px solid rgba(90, 209, 230, 0.35);
+}
+
+.mars-bubble-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.mars-bubble-score {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: rgba(5, 7, 10, 0.9);
+  border: 1px solid;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.mars-bubble-status {
+  position: absolute;
+  left: 6px;
+  bottom: 6px;
+  background: rgba(5, 7, 10, 0.85);
+  border: 1px solid rgba(90, 209, 230, 0.4);
+  color: var(--cyan);
+  padding: 1px 6px;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.mars-bubble-content {
+  padding: 9px 11px;
+}
+
+.mars-bubble-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.mars-bubble-coords {
+  font-size: 11px;
+  color: var(--cyan);
+  margin-top: 3px;
+  font-variant-numeric: tabular-nums;
+}
+
+.mars-bubble-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  padding: 4px 0;
+  border-top: 1px solid #1e2936;
+  border-bottom: 1px solid #1e2936;
+  font-size: 10px;
+  color: #cbd5e1;
+}
+
+.mars-bubble-note {
+  margin-top: 6px;
+  font-size: 10px;
+  line-height: 1.35;
+  color: var(--muted);
+}
+
+.mars-point-tip {
+  background: rgba(8, 11, 16, 0.94);
+  border: 1px solid var(--cyan);
+  color: var(--cyan);
+  padding: 4px 8px;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+/* Make map expand to fill full available height like Google Maps */
+.map-wrap {
+  aspect-ratio: auto !important;
+  flex: 1 1 auto !important;
+  min-height: 480px;
+}

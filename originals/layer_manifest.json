@@ -1,0 +1,53 @@
+{
+  "project": "Interplanetary Survival Guide \u2014 2D Mars Map MVP",
+  "role": "Developer 2 \u2014 NASA Data & Map Layers",
+  "prepared_on": "2026-11-14",
+  "layers": [
+    {
+      "id": "mola_colorized_shaded_relief",
+      "name": "MOLA Shaded Relief / Colorized Elevation",
+      "type": "visual raster image tiles",
+      "provider": "Arizona State University (ASU) Mars Global Data Sets",
+      "mission_instrument": "NASA Mars Global Surveyor / MOLA",
+      "resolution": "128 pixels per degree; approximately 463.1 m per pixel",
+      "projection": "Simple cylindrical (equirectangular)",
+      "longitude_bounds": [
+        -180,
+        180
+      ],
+      "latitude_bounds": [
+        -88,
+        88
+      ],
+      "tile_layout": "30 x 30 degree tiles",
+      "format": "PNG",
+      "product_url": "https://mars.asu.edu/data/mola_color/",
+      "download_directory": "https://mars.asu.edu/data/mola_color/large/",
+      "caveat": "Colorized visual product; RGB values are not numeric elevation measurements."
+    },
+    {
+      "id": "mola_megdr_topography",
+      "name": "MOLA MEGDR Topography",
+      "type": "numeric binary raster",
+      "provider": "NASA Planetary Data System Geosciences Node",
+      "mission_instrument": "NASA Mars Global Surveyor / MOLA",
+      "resolution_options": [
+        "4 ppd",
+        "16 ppd",
+        "32 ppd",
+        "64 ppd",
+        "128 ppd"
+      ],
+      "format": "PDS IMG binary plus matching LBL label",
+      "product_url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
+      "dataset_profile": "https://pds.nasa.gov/ds-view/pds/viewProfile.jsp?dsid=MGS-M-MOLA-5-MEGDR-L3-V1.0",
+      "documentation": "https://pds-geosciences.wustl.edu/mgs/urn-nasa-pds-mgs_mola_topography_derived/document/egdrsis.pdf",
+      "caveat": "Decode using the product label/SIS before numeric use; verify scaling, units, byte order and map geometry."
+    }
+  ],
+  "not_included": [
+    "No numeric slope raster has been generated.",
+    "No water-ice evidence layer has been generated.",
+    "No fabricated measurement values are included."
+  ]
+}

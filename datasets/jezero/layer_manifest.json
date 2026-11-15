@@ -1,0 +1,72 @@
+{
+  "project": "Interplanetary Survival Guide \u2014 2D Martian Map MVP",
+  "role": "Developer 2 \u2014 NASA Data & Map Layers",
+  "demo_region": "Jezero Crater, Mars",
+  "region_bounds": {
+    "min_latitude_planetocentric_deg": 17.58,
+    "max_latitude_planetocentric_deg": 19.29,
+    "min_longitude_east_deg": 76.99,
+    "max_longitude_east_deg": 78.58
+  },
+  "datasets": [
+    {
+      "id": "jezero_ctx_dem_20m",
+      "name": "Mars 2020 Science Investigation CTX DEM Mosaic",
+      "status": "Authoritative source identified; direct raster download not bundled in this package",
+      "instrument": "CTX (Context Camera), Mars Reconnaissance Orbiter",
+      "data_type": "Digital elevation model",
+      "resolution": "20 m/pixel",
+      "units": "metres",
+      "dimensions_pixels": {
+        "rows": 5067,
+        "columns": 4456
+      },
+      "projection": "Equirectangular",
+      "latitude_type": "Planetocentric",
+      "longitude_direction": "Positive East",
+      "longitude_domain": "-180 to +180 degrees",
+      "vertical_control": "MOLA",
+      "coverage": {
+        "min_latitude_deg": 17.58,
+        "max_latitude_deg": 19.29,
+        "min_longitude_deg": 76.99,
+        "max_longitude_deg": 78.58
+      },
+      "direct_download": "https://planetarymaps.usgs.gov/mosaic/mars2020_trn/CTX/ScienceInvestigationMaps_JPL/M20_JezeroCrater_CTXDEM_20m.tif",
+      "metadata_page": "https://astrogeology.usgs.gov/search/map/mars_2020_science_investigation_ctx_dem_mosaic",
+      "use": "Primary scientific terrain/elevation layer; can derive slope after download."
+    },
+    {
+      "id": "jezero_ctx_ortho_5m",
+      "name": "Mars 2020 Science Investigation CTX Orthomosaic",
+      "status": "Authoritative source identified; direct raster download not bundled in this package",
+      "instrument": "CTX, Mars Reconnaissance Orbiter",
+      "data_type": "Orthorectified image mosaic",
+      "resolution": "5 m/pixel",
+      "projection": "Equirectangular",
+      "latitude_type": "Planetocentric",
+      "longitude_direction": "Positive East",
+      "longitude_domain": "-180 to +180 degrees",
+      "direct_download": "https://planetarymaps.usgs.gov/mosaic/mars2020_trn/CTX/ScienceInvestigationMaps_JPL/M20_JezeroCrater_CTXortho_mosaic_5m.tif",
+      "metadata_page": "https://astrogeology.usgs.gov/search/map/mars_2020_science_investigation_ctx_dem_mosaic",
+      "use": "Visual surface context layer to display beneath/alongside the DEM."
+    },
+    {
+      "id": "perseverance_landing_reference",
+      "name": "Perseverance landing reference point",
+      "status": "Reference point included in GeoJSON",
+      "coordinates": {
+        "latitude_north_deg": 18.4446,
+        "longitude_east_deg": 77.4509
+      },
+      "source": "Bell et al. 2023 NASA NTRS paper",
+      "note": "Historic landing point; not a live rover position."
+    }
+  ],
+  "limitations": [
+    "Rasters are linked as official USGS direct downloads but are not embedded because this environment could not reach the remote file host.",
+    "The GeoJSON is a study-area boundary and reference marker, not an elevation raster.",
+    "No slope raster has been generated; use the supplied script after downloading the DEM.",
+    "Slope and elevation alone cannot certify a location as safe for human survival or landing."
+  ]
+}
