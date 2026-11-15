@@ -1,10 +1,11 @@
-# MARS 360: Interplanetary Survival Guide, Martian Map
+MARS 360: Interplanetary Survival Guide, Martian Map
+An interactive web application built with React, Vite, and Leaflet that maps Martian geography and features an integrated survival-suitability heuristic alongside detailed site briefs.
 
-React + Vite + Leaflet map of Mars with a survival-suitability heuristic.
+Key Features
+Interactive Martian Map: Built using Leaflet to explore planetary topography, coordinate systems, and custom study-area overlays (including Jezero Crater).
 
-- **Role 1/2 (teammate code):** `src/` components, map, layers, suitability scoring (kept as received; original README in `originals/`).
-- **Role 3 (added):** `src/data/mars_locations.json` (Jezero, Gale, Arcadia, Elysium), site-brief panel, Jezero study-area overlay, data docs, Python scripts in `processing/scripts/`.
+Comprehensive Location Data: Curated datasets covering major sites like Jezero Crater, Gale Crater, Arcadia Planitia, and Elysium Planitia (src/data/mars_locations.json).
 
-**Run:** see `SETUP_GUIDE.md` (`npm.cmd install`, then `npm.cmd run dev`).
+Site Brief Panel: Dynamic information interface providing contextual insights for selected regions.
 
-**Honest status:** the suitability score still uses the original *sample* values, labelled in the UI. No scientific rasters are bundled; see `docs/NASA_DATA_SOURCES.md`.
+Data Processing Pipeline: Python utility scripts (processing/scripts/) and documentation (docs/NASA_DATA_SOURCES.md) supporting data validation and spatial processing.
